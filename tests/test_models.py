@@ -213,6 +213,12 @@ class TestModels(unittest.TestCase):
         self._test_bgem3_multi(bgem3.query_multi_encoder(), test_query_multivec_encoder=True)
         self._test_bgem3_multi(bgem3.doc_multi_encoder(), test_doc_multivec_encoder=True)
 
+    def test_jina_embedder(self):
+        from pyterrier_dr import JinaEmbedder
+
+        self._base_test(JinaEmbedder(), test_doc_encoder=False, test_scorer=False, test_indexer=False, test_retriever=False)
+        self._base_test(JinaEmbedder(), test_query_encoder=False, test_scorer=False, test_indexer=False, test_retriever=False)
+
     @unittest.skipIf(not LIGHTNING_IR_AVAILIBLE, "lightning_ir is not installed")
     def test_lightning_ir_mono_electra(self):
         from pyterrier_dr import LightningIRMonoScorer
